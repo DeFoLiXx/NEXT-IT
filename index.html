@@ -1468,60 +1468,53 @@ body {
   }
 }
 @media (max-width: 768px) {
-  /* 1. ШАПКА: Убираем лишние отступы, чтобы не было скролла */
-  .header {
-    padding: 0 12px;
-    gap: 8px;
+  /* 1. ГЛАВНАЯ ЧАСТЬ ФУТЕРА: переводим в одну колонку */
+  .footer__main {
+    grid-template-columns: 1fr; /* Стек вместо двух колонок */
+    padding: 40px 20px;
+    gap: 40px;
+    text-align: center; /* Центрируем текст для красоты на мобильных */
   }
 
-  /* 2. КАРТОЧКИ: Полная ширина и вертикальный стек */
-  .cards-grid {
-    display: flex;
+  /* 2. НАВИГАЦИЯ В ФУТЕРЕ: выравниваем кнопки по центру */
+  .footer__nav-links {
+    align-items: center;
+  }
+
+  .footer__nav-link {
+    width: 100%; /* Кнопки на всю ширину (удобно для пальцев) */
+    max-width: 280px; /* Но не слишком огромные */
+    min-width: unset;
+  }
+
+  /* 3. QR-КОДЫ: выравниваем по центру */
+  .footer__qr {
+    justify-content: center;
+    order: -1; /* Можно поднять QR-коды выше навигации, если нужно */
+  }
+
+  /* 4. НИЖНЯЯ ПАНЕЛЬ: телефон и адрес друг под другом */
+  .footer__bottom {
     flex-direction: column;
-    gap: 20px;
-    padding: 0 12px;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 16px;
+    text-align: center;
   }
 
-  .service-card, .service-card.cat-1 {
-    grid-template-columns: 1fr !important;
-    grid-template-areas: 
-      "photo"
-      "body"
-      "badge"
-      "meta" !important;
-    max-width: 100%;
-    transform: none !important;
-    opacity: 1 !important;
+  .footer__bottom-addr, 
+  .footer__bottom-phone {
+    font-size: 13px;
+    line-height: 1.4;
   }
 
-  .card__img {
-    height: 200px;
-    border-right: none;
-    border-bottom: 1.5px solid #e5e9f5;
-  }
-
-  .card__meta {
-    flex-direction: row; /* Время и цена в одну строку */
-    justify-content: space-around;
-  }
-
-  /* 3. КОНТАКТЫ: В одну колонку */
-  .contacts-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-card-addr__text {
-    font-size: 1.4rem; /* Чуть меньше шрифт для мобильных */
-  }
-
-  /* 4. МОДАЛЬНОЕ ОКНО: Адаптация под экран телефона */
-  .modal-box {
-    width: 95%;
-    margin: 10px;
-  }
-
-  .modal-meta-row {
-    gap: 12px;
+  /* 5. ГЛОБАЛЬНЫЙ ФИКС СКРОЛЛА */
+  /* Если где-то внутри футера или сайта есть широкий элемент, 
+     этот код принудительно его "усмирит" */
+  .footer, .header, .page, section {
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 }
   </style>
