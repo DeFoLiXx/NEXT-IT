@@ -145,32 +145,54 @@
   .header {
     display: flex;
     flex-wrap: wrap;
-    height: auto;
-    padding: 10px;
+    padding: 10px 12px;
     gap: 8px;
   }
 
-  /* верх */
+  /* 🔥 ВЕРХНЯЯ ЛИНИЯ (АДРЕС + ТЕЛЕФОН) */
   .header__left {
     width: 50%;
+    display: flex;
+    align-items: center;
   }
 
   .header__right {
     width: 50%;
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
   }
 
-  /* низ */
+  /* убираем лишний мусор */
+  .header__social {
+    display: none; /* можно убрать на телефоне */
+  }
+
+  .header__address {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* чтобы не ломало строку */
+  }
+
+  .header__phone {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* 🔥 НИЖНЯЯ ЛИНИЯ (КНОПКИ) */
   .header__nav {
     width: 100%;
     order: 3;
+    display: flex;
     justify-content: space-between;
+    gap: 6px;
   }
 
   .header__nav-btn {
     flex: 1;
-    min-width: 0;
     font-size: 11px;
+    padding: 6px 0;
   }
 
 }
