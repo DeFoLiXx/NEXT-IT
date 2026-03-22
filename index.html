@@ -46,21 +46,20 @@
 .header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: var(--header-h);
-  background: #ffffff;
+  background: #fff;
   border-bottom: 2px solid #e5e9f5;
   box-shadow: 0 4px 24px rgba(26,31,53,0.12);
-  backdrop-filter: blur(6px);
   z-index: 1000;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
 
-  padding: 0 28px;
+  padding: 0 24px;
+  height: var(--header-h);
 }
 
-/* ===== УБИРАЕМ ЛОГО ===== */
+/* убираем логотип */
 .header__logo {
   display: none;
 }
@@ -68,25 +67,16 @@
 /* ===== LEFT (АДРЕС) ===== */
 .header__center {
   justify-self: start;
-  display: flex;
-  align-items: center;
-  gap: 20px;
 }
 
-/* ===== АДРЕС ===== */
 .header__address {
   font-family: 'Oswald', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
   white-space: nowrap;
-  transition: 0.2s;
-}
-
-.header__address:hover {
-  color: var(--n-blue);
 }
 
 /* ===== NAV (ЦЕНТР) ===== */
@@ -96,14 +86,20 @@
   gap: 12px;
 }
 
+/* КЛЮЧЕВОЕ — одинаковые кнопки */
 .header__nav-btn {
-  padding: 6px 18px;
+  width: 130px; /* фикс ширина */
+  text-align: center;
+
+  padding: 8px 0;
   border-radius: 6px;
+
   font-family: 'Oswald', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+
   color: var(--muted);
   background: transparent;
   border: 1.5px solid #e5e9f5;
@@ -123,79 +119,48 @@
   border-color: var(--n-blue);
 }
 
-/* ===== RIGHT (ТЕЛЕФОН + СОЦ) ===== */
+/* ===== RIGHT ===== */
 .header__right {
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* ===== PHONE ===== */
 .header__phone {
   font-family: 'Oswald', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text);
   white-space: nowrap;
-  transition: 0.2s;
-}
-
-.header__phone:hover {
-  color: var(--n-green);
 }
 
 /* ===== SOCIAL ===== */
 .header__social {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .header__social-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1.5px solid #e5e9f5;
   background: #f7f9ff;
-  transition: 0.2s;
-}
-
-.header__social-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.header__social-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.header__social-btn.inst:hover {
-  border-color: #d6249f;
-  background: rgba(253,84,153,0.07);
-}
-
-.header__social-btn.tg:hover {
-  border-color: #29b6f6;
-  background: rgba(41,182,246,0.08);
 }
 
 /* ===== TABLET ===== */
 @media (max-width: 1024px) {
 
-  .header__address,
-  .header__phone {
-    font-size: 15px;
-  }
-
   .header__nav-btn {
+    width: 110px;
     font-size: 12px;
-    padding: 5px 12px;
   }
 
 }
@@ -207,55 +172,43 @@
     display: flex;
     flex-wrap: wrap;
     height: auto;
-    padding: 10px 14px;
-    gap: 10px;
+    padding: 10px 12px;
+    gap: 8px;
   }
 
-  /* адрес сверху */
+  /* верхняя линия */
   .header__center {
     order: 1;
-    width: 100%;
-    justify-content: center;
+    width: 50%;
+  }
+
+  .header__right {
+    order: 2;
+    width: 50%;
+    justify-content: flex-end;
   }
 
   .header__address {
-    font-size: 14px;
-    text-align: center;
+    font-size: 13px;
   }
 
-  /* меню по центру */
+  .header__phone {
+    font-size: 13px;
+  }
+
+  /* нижняя линия — кнопки */
   .header__nav {
-    order: 2;
-    width: 100%;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .header__nav-btn {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
-
-  /* телефон + соц */
-  .header__right {
     order: 3;
     width: 100%;
     justify-content: center;
     gap: 8px;
   }
 
-  .header__phone {
-    font-size: 14px;
-  }
-
-  .header__social-btn {
-    width: 36px;
-    height: 36px;
-  }
-
-  .header__social-btn svg {
-    width: 16px;
-    height: 16px;
+  .header__nav-btn {
+    width: 30%; /* 3 кнопки в ряд */
+    min-width: 90px;
+    font-size: 11px;
+    padding: 6px 0;
   }
 
 }
