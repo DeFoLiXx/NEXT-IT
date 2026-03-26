@@ -80,6 +80,19 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 10px; /* расстояние между кнопками */
+}
+
+@media (max-width: 768px) {
+  .header__center {
+    position: static; /* отменяем абсолютное позиционирование */
+    transform: none; /* отменяем сдвиг */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* центрируем по горизонтали */
+    margin: 10px 0; /* при необходимости отступ сверху/снизу */
+  }
 }
 
 /* ===== NAV ===== */
