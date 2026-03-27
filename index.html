@@ -485,7 +485,7 @@
     .breadcrumbs__item.active { color: var(--n-blue); font-weight: 600; cursor: default; }
     .breadcrumbs__sep { color: #8fa5cf; }
 
-    /* ===== CATEGORY NAV ===== */
+/* ===== CATEGORY NAV ===== */
     /* ===== AUDIENCE BANNER ===== */
 
 .audience-strip{
@@ -597,145 +597,182 @@
     .services-section__line { flex: 1; height: 2px; background: #e5e9f5; border-radius: 2px; }
 
 
-/* ===== CARD VIDEO ===== */
-.card__video {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  display: block;
-  background: #000;
-  border-bottom: 1.5px solid #e5e9f5;
-}
+    /* ===== CARD VIDEO ===== */
+    .card__video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      background: #000;
+      border-bottom: 1.5px solid #e5e9f5;
+    }
+    /* ===== CARD IMAGE ===== */
+    .card__img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1.5px solid #e5e9f5;
+    }
+    /* ===== CARDS GRID ===== */
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-/* ===== CARD IMAGE ===== */
-.card__img {
-  grid-area: photo;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-right: 1.5px solid #e5e9f5;
-}
-
-/* ===== CARDS GRID ===== */
-.cards-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* ===== SERVICE CARD GRID ===== */
-.service-card {
-  background: var(--bg-light);
-  border-radius: 14px;
-  border: 1.5px solid #e5e9f5;
-  overflow: hidden;
-  display: grid;
+    /* ===== SERVICE CARD — full-width horizontal ===== */
+    /* ── CARD: grid layout (photo макет) ── */
+    .service-card {
+      background: var(--bg-light);
+      border-radius: 14px;
+      border: 1.5px solid #e5e9f5;
+      overflow: hidden;
+        display: grid;
   grid-template-columns: 280px 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: 1fr auto;
   grid-template-areas:
     "photo body"
+    "photo expand"
     "photo meta";
-  box-shadow: var(--shadow);
-  opacity: 0; transform: translateY(18px);
-  transition: opacity .5s ease, transform .5s ease,
-              box-shadow var(--tr), border-color var(--tr);
-  min-height: 200px;
-}
+      box-shadow: var(--shadow);
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .5s ease, transform .5s ease,
+                  box-shadow var(--tr), border-color var(--tr);
+      min-height: 200px;
+    }
+    .service-card.revealed { opacity: 1; transform: translateY(0); }
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(26,31,53,0.13);
+      border-color: #7a96d4;
+      transform: translateY(-2px);
+    }
 
-.service-card.revealed { opacity: 1; transform: translateY(0); }
-.service-card:hover {
-  box-shadow: 0 8px 32px rgba(26,31,53,0.13);
-  border-color: #7a96d4;
-  transform: translateY(-2px);
-}
+    /* PHOTO — top left */
+    .card__img {
+      grid-area: photo;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      border-right: 1.5px solid #e5e9f5;
+    }
 
-/* BODY — контент справа */
-.card__body {
-  grid-area: body;
-  padding: 22px 26px 16px;
-  display: flex; flex-direction: column; gap: 8px;
-  border-bottom: 1.5px solid #e5e9f5;
-  cursor: pointer;
-}
+    /* BODY — top right (content) */
+    .card__body {
+      grid-area: body;
+      padding: 22px 26px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+      border-bottom: 1.5px solid #e5e9f5;
+    }
+    .card__desc-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: .95rem; font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .card__desc-text {
+      font-family: 'Inter', sans-serif;
+      font-size: .88rem;
+      color: #4b5563; line-height: 1.65;
+    }
 
-/* Badge внутри body */
-.card__badge-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  margin-bottom: 6px;
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  width: fit-content;
-}
-.cat-1 .card__badge-tag { background: rgba(43,76,160,0.10); color: var(--n-blue); }
-.cat-2 .card__badge-tag { background: rgba(58,170,53,0.12); color: var(--n-green); }
+    /* BADGE — bottom left (name + tag) */
+    .card__badge {
+      grid-area: badge;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 14px 20px;
+      border-right: 1.5px solid #e5e9f5;
+      border-top: 1.5px solid #e5e9f5;
+      background: var(--bg-mid);
+    }
+    .card__badge-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      margin-bottom: 6px;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .cat-1 .card__badge-tag { background: rgba(43,76,160,0.10); color: var(--n-blue); }
+    .cat-2 .card__badge-tag { background: rgba(58,170,53,0.12); color: var(--n-green); }
+    .card__name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem; font-weight: 700;
+      letter-spacing: .04em; text-transform: uppercase;
+      line-height: 1.2; color: var(--text);
+    }
 
-/* TEXT */
-.card__desc-label {
-  font-family: 'Oswald', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  letter-spacing: .04em;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-.card__desc-text {
-  font-family: 'Inter', sans-serif;
-  font-size: .88rem;
-  color: #4b5563; line-height: 1.65;
-}
+    /* META — bottom right (time + price) */
+    .card__meta {
+      grid-area: meta;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      gap: 8px;
+      padding: 14px 20px;
+      border-top: 1.5px solid #e5e9f5;
+      background: var(--bg-mid);
+    }
+    .card__meta-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .card__meta-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+    }
+    .card__meta-value { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 700; }
+    .card__meta-value.time  { color: var(--n-blue); }
+    .card__meta-value.price { color: var(--n-red); }
 
-/* META — bottom right */
-.card__meta {
-  grid-area: meta;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  gap: 8px;
-  padding: 14px 20px;
-  border-top: 1.5px solid #e5e9f5;
-  background: var(--bg-mid);
-}
-.card__meta-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.card__meta-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px; font-weight: 600;
-  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
-}
-.card__meta-value { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 700; }
-.card__meta-value.time  { color: var(--n-blue); }
-.card__meta-value.price { color: var(--n-red); }
-
-/* MOBILE: stack vertically */
-@media (max-width: 720px) {
-  .service-card {
-    grid-template-columns: 1fr;
-    grid-template-rows: 200px auto auto;
-    grid-template-areas:
-      "photo"
-      "body"
-      "meta";
-    width: 100%;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .card__img {
-    border-right: none;
-    border-bottom: 1.5px solid #e5e9f5;
-    height: 200px;
-  }
-  .card__body { padding: 16px; border-bottom: 1.5px solid #e5e9f5; }
-  .card__meta { padding: 12px 16px; justify-content: space-around; }
-  .cards-grid { max-width: 100%; margin-left: 0; margin-right: 0; }
-  .services-section { padding: 28px 14px; }
-  .category-nav { padding: 20px 14px 12px; gap: 10px; }
-  .cat-btn { padding: 11px 20px; font-size: .88rem; }
-  .services-section__title { font-size: 1.3rem; }
-}
-
+    /* Mobile: stack vertically */
+    @media (max-width: 720px) {
+      /* Cards: vertical stack, full width */
+      .cards-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .service-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: 200px auto auto auto;
+        grid-template-areas:
+          "photo"
+          "body"
+          "badge"
+          "meta";
+        width: 100%;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .card__img {
+        border-right: none;
+        border-bottom: 1.5px solid #e5e9f5;
+        height: 200px;
+      }
+      .card__body {
+        padding: 16px;
+        border-bottom: 1.5px solid #e5e9f5;
+      }
+      .card__badge {
+        border-right: none;
+        border-top: 1.5px solid #e5e9f5;
+        padding: 12px 16px;
+      }
+      .card__meta {
+        padding: 12px 16px;
+        justify-content: space-around;
+      }
+      .services-section { padding: 28px 14px; }
+      .category-nav { padding: 20px 14px 12px; gap: 10px; }
+      .cat-btn { padding: 11px 20px; font-size: .88rem; }
+      .services-section__title { font-size: 1.3rem; }
+    }
 
     /* ── COURSE MODAL ── */
     .modal-overlay {
@@ -1806,135 +1843,138 @@ body {
       </div>
       <div class="cards-grid">
         
-        <article class="service-card cat-1">
-  <img class="card__img" src="images/19.jpg" alt="NextGen AI Academy"/>
-  <div class="card__body" onclick="openCourse('nextgen-ai')">
-    <span class="card__badge-tag">AI ПРОГРАМА · 9–14 років</span>
+        <!-- NextGen AI Academy -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/20260319_2057_Image Generation_simple_compose_01km3qbmcged28j8v0d6rjdmg8.png" alt="NextGen AI Academy"/>
+  
+  <div class="card__expand-hint" onclick="openCourse('nextgen-ai')">
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
+  </div>
+  <div class="card__body" onclick="openCourse('nextgen-ai')" style="cursor:pointer;">
     <div class="card__desc-label">NEXTGEN AI ACADEMY</div>
     <p class="card__desc-text">
       Академія штучного інтелекту для нового покоління. Створюй мультфільми, ігри, сайти та дизайн разом із найсучаснішими нейромережами.
     </p>
   </div>
-  <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Рівень</span>
-      <span class="card__meta-value">Академічна програма</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">12–14 міс.</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">4500 грн/міс</span>
-    </div>
-  </div>
-</article>
 
-        <article class="service-card cat-1">
-  <img class="card__img" src="images/11.jpg" alt="IT Base"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">ОСВІТА · 6–8 років</span>
-    <div class="card__name">IT BASE</div>
+  <div class="card__meta">
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">9–14 років</span>
   </div>
-  <div class="card__body" onclick="openCourse('it-base')" style="cursor:pointer;">
-    <div class="card__desc-label">IT BASE: ПЕРШІ КРОКИ</div>
-    <p class="card__desc-text">
-      Дитина впевнено опановує ПК: від роботи з файлами до безпеки в інтернеті. Ми вивчаємо логіку та алгоритми через ігрову робототехніку та програмування, що розвиває критичне мислення змалечку.
-      <br><br>
-      Творчий блок включає створення власних 3D-ігор, анімації, звуковий дизайн та роботу в Minecraft Education. Учні пробують себе у 3D-моделюванні, створюючи об'ємних персонажів від простої фігури до детального героя.
-      <br><br>
-      Особливість курсу — великий акцент на Штучному Інтелекті. Діти вчаться генерувати ідеї, зображення та тексти разом із розумними помічниками, опановуючи інструменти, які стануть стандартом майбутнього.
-    </p>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">16 занять (по 1.5 - 2 години)</span>
   </div>
+
+ 
+    </article>
+
+        <!-- КУРС IT BASE -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/lucid-origin_Happy_children_8–12_years_old_studying_programming_in_a_modern_classroom_sitti-0.jpg" alt="IT Base"/>
+  
   <div class="card__expand-hint" onclick="openCourse('it-base')">
+    
     <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-  <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Графік</span>
-      <span class="card__meta-value">Будні або Вихідні</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">1 рік</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">1900 грн/міс</span>
-    </div>
-  </div>
-</article>
-
-<article class="service-card cat-1">
-  <img class="card__img" src="images/1.jpg" alt="IT DISCOVERY"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">ОСВІТА · 9–12 років</span>
-    <div class="card__name">IT DISCOVERY</div>
-  </div>
-  <div class="card__body" onclick="openCourse('it-discovery')" style="cursor:pointer;">
-    <div class="card__desc-label">IT DISCOVERY: ЦИФРОВИЙ ФУНДАМЕНТ</div>
+  <div class="card__body" onclick="openCourse('it-base')" style="cursor:pointer;">
+    <div class="card__desc-label">IT BASE</div>
     <p class="card__desc-text">
-      Програма перетворює гаджет на інструмент для самореалізації. Учні опановують професійну роботу з хмарними сервісами, складний дизайн у Photoshop та створюють візуальний контент за допомогою нейромереж.
-      <br><br>
-      Блок геймдизайну включає розробку 2D та 3D ігор у Construct 3 та Kodu, створення VR-локацій та програмування агентів у Minecraft. Дитина вчиться поєднувати реальні механізми з можливостями ШІ в робототехніці.
-      <br><br>
-      На завершення курсу підлітки опановують Python, створюють адаптивні сайти на HTML/CSS та збирають власне цифрове портфоліо. Кожен рік закінчується хакатоном — презентацією власного IT-стартапу.
+      🚀 IT BASE: Перші кроки у світ технологій<br>
+      Дитина розуміє, як влаштований цифровий світ, вміє створювати власний контент і готова до опанування складніших IT-професій у майбутньому.<br><br>
+      💻 Комп'ютерна грамотність · 🤖 Великий блок Штучного Інтелекту · 🎮 Створення ігор · 🎨 Дизайн · 🎬 Мультиплікація та звук · 🧱 Minecraft Education · 🏗️ 3D-моделювання та скульптинг · 🕹️ Робототехніка та програмування<br><br>
+      💡 Особливість курсу: Ми робимо великий акцент на Штучному Інтелекті, щоб діти вже зараз опановували інструменти, які стануть стандартом у майбутньому.
     </p>
   </div>
+  <div class="card__meta">
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 6–8 років</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">1 рік</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вартість</span>
+    <span class="card__meta-value price">1900 грн/міс</span>
+  </div>
+</div>
+    </article>
+        
+
+        <!-- КУРС IT DISCOVERY -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/діти.png" alt="IT DISCOVERY"/>
+  
   <div class="card__expand-hint" onclick="openCourse('it-discovery')">
     <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-  <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Рівень</span>
-      <span class="card__meta-value">Академічна</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">2 роки</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">3700 грн/міс</span>
-    </div>
-  </div>
-</article>
-
-<article class="service-card cat-1">
-  <img class="card__img" src="images/2.jpg" alt="IT EXPLORER"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">ОСВІТА · 13–14 років</span>
-    <div class="card__name">IT EXPLORER</div>
-  </div>
-  <div class="card__body" onclick="openCourse('it-explorer')" style="cursor:pointer;">
-    <div class="card__desc-label">IT EXPLORER: МАЙСТЕР-НАПРЯМОК</div>
+  <div class="card__body" onclick="openCourse('it-discovery')" style="cursor:pointer;">
+    <div class="card__desc-label">IT DISCOVERY</div>
     <p class="card__desc-text">
-      Комплексний курс для підлітків, що охоплює медіа-продакшн, професійний блогінг та відеомонтаж. Студенти вчаться створювати особистий бренд та працювати з трендовим контентом у Reels Studio.
-      <br><br>
-      Технічний блок занурює у глибоке вивчення Python, розробку ігор на Unreal Engine та Roblox, а також створення мобільних додатків із AR. Велика увага приділяється кібербезпеці та командній розробці проєктів.
-      <br><br>
-      Студенти опановують Blender, Concept Art та професійний вебдизайн. Окремий модуль присвячений стартапам та фрілансу: ми вчимо, як монетизувати свої IT-навички та знайти перших замовників.
+      Гаджет перетворюється з "поглинача часу" на інструмент для самореалізації. Дитина розуміє, ким вона хоче бути в IT: програмістом, дизайнером, інженером чи медіа-мейкером.<br><br>
+      📂 Цифровий фундамент та дизайн · 🎮 Геймдизайн та VR · 🤖 Робототехніка та AI · 🐍 Python · 🌐 Web-розробка · 🏆 Хакатон та портфоліо
     </p>
   </div>
+  
+  <div class="card__meta">
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 9–12 років</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">2 роки</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вартість</span>
+    <span class="card__meta-value price">3700 грн/міс</span>
+  </div>
+</div>
+    </article>
+
+
+
+        <!-- КУРС IT EXPLORER -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/20260320_1832_Image Generation_simple_compose_01km61evf5ezv9qxyjz0b5xw1c.png" alt="IT EXPLORER"/>
+  
   <div class="card__expand-hint" onclick="openCourse('it-explorer')">
     <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-  <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Рівень</span>
-      <span class="card__meta-value">Академічна</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">2 роки</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">3700 грн/міс</span>
-    </div>
+  <div class="card__body" onclick="openCourse('it-explorer')" style="cursor:pointer;">
+    <div class="card__desc-label">IT EXPLORER</div>
+    <p class="card__desc-text">
+      Кожен учень знаходить свій "майстер-напрямок". Після навчання підліток має портфоліо з власних ігор, сайтів, 3D-моделей та бізнес-ідей.<br><br>
+      📱 Блогінг · 💻 Python та ігри · 🎨 Blender, Concept Art, Вебдизайн · 🤖 AI Masters, Робототехніка, VR Lab · 💼 Стартап та Soft Skills
+    </p>
   </div>
-</article><!-- /cards-grid освіта -->
+  <div class="card__meta">
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 13–14 років</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">2 роки</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вартість</span>
+    <span class="card__meta-value price">3700 грн/міс</span>
+  </div>
+</div>
+    </article>
+
+      </div><!-- /cards-grid освіта -->
 
       <!-- SUBCATEGORY: СПЕЦКУРСИ ДИТЯЧІ (placeholder) -->
       <div class="sub-cat-header cat-1-color" style="margin-top:36px;">
@@ -1942,91 +1982,45 @@ body {
         <span class="sub-cat-title">СПЕЦКУРСИ ДИТЯЧІ</span>
       </div>
             <div class="cards-grid">
-         <article class="service-card cat-1">
-  <img class="card__img" src="images/17.jpg" alt="Animation Studio"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 10–14 років</span>
-    <div class="card__name">ANIMATION STUDIO</div>
+         <!-- КУРС ANIMATION & CARTOON STUDIO -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/20260108_1946_Image Generation_simple_compose_01kefbc1hnehaa7nmsfkm516gt.png" alt="Animation Studio"/>
+  
+  <div class="card__expand-hint" onclick="openCourse('animation-studio')">
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
+
   <div class="card__body" onclick="openCourse('animation-studio')" style="cursor:pointer;">
     <div class="card__desc-label">ANIMATION & CARTOON STUDIO</div>
     <p class="card__desc-text">
-      Повний цикл створення мультфільму: від написання сценарію та розкадровки до фінальної прем'єри. Дитина опановує мистецтво сторітеллінгу та вчиться перетворювати текст на візуальні сцени.
-      <br><br>
-      Учні вивчають світові техніки анімації: Stop-Motion, 2D Cutout, пластилінову магію та піксіляцію. Блок спецефектів включає роботу з Chroma Key (зеленим фоном) та створення VFX-ефектів.
-      <br><br>
-      Окремий етап присвячений саунд-дизайну: запису авторських шумів, озвучуванню героїв та підбору музики. Результатом курсу стане власна фільмографія та великий авторський мультфільм.
+      Дитина стає режисером, сценаристом та майстром спецефектів.<br><br>
+      Pre-production · Stop-Motion · Chroma Key · VFX · Sound Design · Власний авторський мультфільм
     </p>
   </div>
-  <div class="card__expand-hint" onclick="openCourse('animation-studio')">
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
-  </div>
   <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">8 місяців</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Графік</span>
-      <span class="card__meta-value">1 день / 2 зан.</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">3000 грн/міс</span>
-    </div>
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 10-14 років</span>
   </div>
-</article>
 
-<article class="service-card cat-1">
-  <img class="card__img" src="images/18.jpg" alt="Lider Pro"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 12–16 років</span>
-    <div class="card__name">LIDER PRO</div>
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">8 міс.</span>
   </div>
-  <div class="card__body" onclick="openCourse('lider-pro')" style="cursor:pointer;">
-    <div class="card__desc-label">FINANCE & STARTUP</div>
-    <p class="card__desc-text">
-      Ми готуємо нове покоління лідерів, які вміють створювати можливості там, де інші бачать перешкоди. Учні опановують фінансову грамотність та вчаться керувати капіталом для майбутнього успіху.
-      <br><br>
-      Програма Business Lab включає аналіз ринку, вибір ніші та розробку бізнес-моделей. Модуль Marketing & Design вчить створювати бренд-стратегії та запускати ефективну рекламу для своїх ідей.
-      <br><br>
-      Фінальна мета — генерація ідей для швидкого заробітку та отримання першого реального прибутку. Ваша дитина обирає професію свідомо та має готовий план запуску власної справи.
-    </p>
-  </div>
-  <div class="card__expand-hint" onclick="openCourse('lider-pro')">
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
-  </div>
-  <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">1 рік</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Рівень</span>
-      <span class="card__meta-value">Спецкурс</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">3200 грн/міс</span>
-    </div>
-  </div>
-</article>
 
-
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вартість</span>
+    <span class="card__meta-value price">3000 грн/міс</span>
+  </div>
+</div>
+    </article>
 <!-- КУРС LIDER PRO: FINANCE & STARTUP -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/18.jpg" alt="Lider Pro"/>
+  <img class="card__img" src="images/20260319_2043_Image Generation_remix_01km3pg18cf2fre2bc91z3shgr.png" alt="Lider Pro"/>
   
   <div class="card__expand-hint" onclick="openCourse('lider-pro')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 12–16 років</span>
-    <div class="card__name">LIDER PRO: FINANCE & STARTUP</div>
-  </div>
-
   <div class="card__body" onclick="openCourse('lider-pro')" style="cursor:pointer;">
     <div class="card__desc-label">LIDER PRO: FINANCE & STARTUP</div>
     <p class="card__desc-text">
@@ -2036,71 +2030,60 @@ body {
   </div>
 <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 12–16 років</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">1 рік</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Вартість</span>
-    <span class="card__meta-value price">4500 грн/міс</span>
+    <span class="card__meta-value price">3200 грн/міс</span>
   </div>
 </div>
     </article>
 
         <!-- КУРС DevCore: Python & Web -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/devcore.jpg" alt="DevCore"/>
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 13–16 років</span>
-    <div class="card__name">DEVCORE</div>
+  <img class="card__img" src="images/20260320_1832_Image Generation_simple_compose_01km61evf4ewhshk497r3c6v8z.png" alt="DevCore"/>
+  
+  <div class="card__expand-hint" onclick="openCourse('devcore')">
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
   <div class="card__body" onclick="openCourse('devcore')" style="cursor:pointer;">
-    <div class="card__desc-label">PYTHON & WEB ARCHITECT</div>
+    <div class="card__desc-label">DEVCORE: PYTHON & WEB</div>
     <p class="card__desc-text">
-      Занурення у професійну розробку: від логіки Python Core до створення складних вебсервісів на Flask. Ми вчимо проектувати бази даних та інтегрувати REST API у реальні проєкти.
-      <br><br>
-      Студенти створюють інтелектуальних Telegram та Discord ботів, опановують систему контролю версій Git та методологію Scrum. Кожен учень відчує себе частиною IT-компанії під час командної роботи.
-      <br><br>
-      Результат курсу — потужне портфоліо на GitHub, що включає динамічні сайти та працюючих ботів. Це впевнений крок від зацікавленості до позиції Junior Developer.
+      Від першого скрипта до власного вебсервісу та розумних ботів.<br><br>
+      Python Core · Flask Backend · Telegram & Discord Bots · Git · Scrum · Портфоліо на GitHub
     </p>
   </div>
-  <div class="card__expand-hint" onclick="openCourse('devcore')">
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
-  </div>
   <div class="card__meta">
-    <div class="card__meta-item">
-      <span class="card__meta-label">Тривалість</span>
-      <span class="card__meta-value time">7 місяців</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Графік</span>
-      <span class="card__meta-value">1 день / 2 зан.</span>
-    </div>
-    <div class="card__meta-item">
-      <span class="card__meta-label">Вартість</span>
-      <span class="card__meta-value price">4200 грн/міс</span>
-    </div>
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 13–16 років</span>
   </div>
-</article>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Тривалість</span>
+    <span class="card__meta-value time">7 міс.</span>
+  </div>
+
+  <div class="card__meta-item">
+    <span class="card__meta-label">Вартість</span>
+    <span class="card__meta-value price">4200 грн/міс</span>
+  </div>
+</div>
+    </article>
     <!-- КУРС Web-Architect: Front-end Design & Dev -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/3.jpg" alt="Web-Architect"/>
+  <img class="card__img" src="images/Lucid_Origin_An_offline_Adobe_Photoshop_class_Teenagers_and_ad_2 (1).jpg" alt="Web-Architect"/>
   
   <div class="card__expand-hint" onclick="openCourse('web-architect')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 13–16 років</span>
-    <div class="card__name">WEB-ARCHITECT: FRONT-END DESIGN & DEV</div>
-  </div>
-
   <div class="card__body" onclick="openCourse('web-architect')" style="cursor:pointer;">
     <div class="card__desc-label">WEB-ARCHITECT: FRONT-END DESIGN & DEV</div>
     <p class="card__desc-text">
@@ -2111,25 +2094,25 @@ body {
 
   <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 13–16 років</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">7 міс.</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Вартість</span>
-    <span class="card__meta-value price">4500 грн/міс</span>
+    <span class="card__meta-value price">4200 грн/міс</span>
   </div>
 </div>
     </article>
 
         <!-- КУРС Design Master: 2D, 3D & Digital Art -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/5.jpg" alt="Design Master"/>
+  <img class="card__img" src="images/Lucid_Origin_An_offline_Adobe_Photoshop_class_Teenagers_and_ad_1.jpg" alt="Design Master"/>
 
   <div class="card__body" onclick="openCourse('design-master')" style="cursor:pointer;">
     <div class="card__desc-label">DESIGN MASTER: 2D, 3D & DIGITAL ART</div>
@@ -2140,24 +2123,17 @@ body {
   </div>
 
   <div class="card__expand-hint" onclick="openCourse('design-master')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 13–16 років</span>
-    <div class="card__name">Design Master</div>
-  </div>
-
   <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">Від 13–16 років</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">9 міс.</span>
   </div>
 
   <div class="card__meta-item">
@@ -2170,7 +2146,7 @@ body {
 
         <!-- КУРС IT-ТАБОРИ -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/6.jpg" alt="IT-Табори"/>
+  <img class="card__img" src="images/діти2.png" alt="IT-Табори"/>
 
   <div class="card__body" onclick="openCourse('it-camp')" style="cursor:pointer;">
     <div class="card__desc-label">IT-ТАБОРИ SUMMER & WINTER</div>
@@ -2181,15 +2157,8 @@ body {
   </div>
 
   <div class="card__expand-hint" onclick="openCourse('it-camp')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
-
-  <div class="card__badge">
-    <span class="card__badge-tag">СПЕЦКУРС · 7–14 років</span>
-    <div class="card__name">IT-ТАБОРИ SUMMER & WINTER</div>
-  </div>
-
   <div class="card__meta">
     <div class="card__meta-item">
       <span class="card__meta-label">Тривалість</span>
@@ -2217,6 +2186,39 @@ body {
         <div class="services-section__line"></div>
       </div>
       <div class="cards-grid">
+        <!-- Курс NextGen CEO -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/lucid-origin_Adults_studying_or_working_on_laptops_in_a_modern_office-style_classroom_bright_-0 (2).jpg" alt="NextGen CEO AI"/>
+
+  <div class="card__body" onclick="openCourse('NextGen-CEO')" style="cursor:pointer;">
+    <div class="card__desc-label">NEXTGEN CEO: AI ДЛЯ ЛІДЕРІВ</div>
+    <p class="card__desc-text">
+      Інтеграція штучного інтелекту в бізнес: автоматизація, аналітика та стратегія.
+      Навчіться масштабувати компанію за допомогою AI.
+    </p>
+  </div>
+
+  <div class="card__expand-hint" onclick="openCourse('NextGen-CEO')">
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
+  </div>
+
+  <div class="card__meta">
+    <div class="card__meta-item">
+      <span class="card__meta-label">Вік</span>
+      <span class="card__meta-value">Дорослі</span>
+    </div>
+
+    <div class="card__meta-item">
+      <span class="card__meta-label">Тривалість</span>
+      <span class="card__meta-value time">7 тижнів</span>
+    </div>
+
+    <div class="card__meta-item">
+      <span class="card__meta-label">Формат</span>
+      <span class="card__meta-value">Online</span>
+    </div>
+  </div>
+</article>
 
         <!-- Курс Professional Design<div class="card__meta">
     <div class="card__meta-item">
@@ -2235,7 +2237,7 @@ body {
       </div>
     </article> -->
     <article class="service-card cat-1">
-      <img class="card__img" src="images/9.jpg" alt="Professional Design"/>
+      <img class="card__img" src="images/Lucid_Origin_An_offline_Adobe_Photoshop_class_Teenagers_and_ad_0.jpg" alt="Professional Design"/>
       <div class="card__body" onclick="openCourse('Pro-Design')" style="cursor:pointer;">
         <div class="card__desc-label">PROFESSIONAL DESIGN & VISUAL ARTS</div>
         <p class="card__desc-text">
@@ -2243,17 +2245,12 @@ body {
         </p>
       </div>
       <div class="card__expand-hint" onclick="openCourse('Pro-Design')">
-        <span class="card__expand-hint__text">Детальна програма курсу</span>
-        <span class="card__expand-hint__arrow">▼ Читати більше</span>
-      </div>
-      <div class="card__badge">
-        <span class="card__badge-tag">ДЛЯ ДОРОСЛИХ</span>
-        <div class="card__name">PROFESSIONAL DESIGN & VISUAL ARTS</div>
-      </div>
+        <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
+  </div>
     <div class="card__meta">
   <div class="card__meta-item">
     <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-value">Професійний (з нуля до Pro)</span>
   </div>
 
   <div class="card__meta-item">
@@ -2271,7 +2268,7 @@ body {
 
 <!-- Курс Frontend Developer -->
     <article class="service-card cat-1">
-      <img class="card__img" src="images/13.jpg" alt="Frontend Developer"/>
+      <img class="card__img" src="images/ChatGPT Image 20 січ. 2026 р., 19_01_11.png" alt="Frontend Developer"/>
       <div class="card__body" onclick="openCourse('Frontend-Pro')" style="cursor:pointer;">
         <div class="card__desc-label">FRONTEND DEVELOPER</div>
         <p class="card__desc-text">
@@ -2280,33 +2277,28 @@ body {
         </p>
       </div>
       <div class="card__expand-hint" onclick="openCourse('Frontend-Pro')">
-        <span class="card__expand-hint__text">Детальна програма курсу</span>
-        <span class="card__expand-hint__arrow">▼ Читати більше</span>
-      </div>
-      <div class="card__badge">
-        <span class="card__badge-tag">ДЛЯ ДОРОСЛИХ</span>
-        <div class="card__name">FRONTEND DEVELOPER</div>
-        </div>
+        <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
+  </div>
         <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">18 – 55 років</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">12 міс.</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Вартість</span>
-    <span class="card__meta-value price">4500 грн/міс</span>
+    <span class="card__meta-value price">4300 грн/міс</span>
   </div>
 </div>
     </article>
 <!-- Курс Data Visualizer Power BI -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/powerbi.jpg" alt="Data Visualizer Power BI"/>
+  <img class="card__img" src="images/lucid-origin_Adults_studying_or_working_on_laptops_in_a_modern_office-style_classroom_bright_-0.jpg" alt="Data Visualizer Power BI"/>
   <div class="card__body" onclick="openCourse('PowerBI-Pro')" style="cursor:pointer;">
     <div class="card__desc-label">DATA VISUALIZER (POWER BI)</div>
     <p class="card__desc-text">
@@ -2315,33 +2307,28 @@ body {
     </p>
   </div>
   <div class="card__expand-hint" onclick="openCourse('PowerBI-Pro')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
-  </div>
-  <div class="card__badge">
-    <span class="card__badge-tag">ДЛЯ ДОРОСЛИХ</span>
-    <div class="card__name">Power BI</div>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
   <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">18+ років</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">2 міс.</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Вартість</span>
-    <span class="card__meta-value price">4500 грн/міс</span>
+    <span class="card__meta-value price">4200 грн/міс</span>
   </div>
 </div>
     </article>
 <!-- Курс Data Science & AI Engineering -->
 <article class="service-card cat-1">
-  <img class="card__img" src="images/datascience.jpg" alt="Data Science AI"/>
+  <img class="card__img" src="images/lucid-origin_Adults_studying_or_working_on_laptops_in_a_modern_office-style_classroom_bright_-0 (1).jpg" alt="Data Science AI"/>
   <div class="card__body" onclick="openCourse('DataScience-Pro')" style="cursor:pointer;">
     <div class="card__desc-label">DATA SCIENCE & AI ENGINEERING</div>
     <p class="card__desc-text">
@@ -2350,30 +2337,58 @@ body {
     </p>
   </div>
   <div class="card__expand-hint" onclick="openCourse('DataScience-Pro')">
-    <span class="card__expand-hint__text">Детальна програма курсу</span>
-    <span class="card__expand-hint__arrow">▼ Читати більше</span>
-  </div>
-  <div class="card__badge">
-    <span class="card__badge-tag">ДЛЯ ДОРОСЛИХ</span>
-    <div class="card__name">DATA SCIENCE & AI ENGINEERING</div>
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
   </div>
   <div class="card__meta">
   <div class="card__meta-item">
-    <span class="card__meta-label">Рівень</span>
-    <span class="card__meta-value">Академічна програма</span>
+    <span class="card__meta-label">Вік</span>
+    <span class="card__meta-value">16+ років / Дорослі</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Тривалість</span>
-    <span class="card__meta-value time">12–14 міс.</span>
+    <span class="card__meta-value time">6-8 міс.</span>
   </div>
 
   <div class="card__meta-item">
     <span class="card__meta-label">Вартість</span>
-    <span class="card__meta-value price">4500 грн/міс</span>
+    <span class="card__meta-value price">4300 грн/міс</span>
   </div>
 </div>
     </article>
+    <!-- Курс Autodesk 3ds Max -->
+<article class="service-card cat-1">
+  <img class="card__img" src="images/Lucid_Origin_An_offline_Adobe_Photoshop_class_Teenagers_and_ad_3 (1).jpg" alt="Autodesk 3ds Max"/>
+  
+  <div class="card__body" onclick="openCourse('3dsMax-Pro')" style="cursor:pointer;">
+    <div class="card__desc-label">AUTODESK 3DS MAX</div>
+    <p class="card__desc-text">
+      Створення фотореалістичних 3D-візуалізацій: моделювання, матеріали, світло та рендер.
+      Навчіться створювати сцени, які неможливо відрізнити від фото.
+    </p>
+  </div>
+
+  <div class="card__expand-hint" onclick="openCourse('3dsMax-Pro')">
+    <span class="card__expand-hint__arrow">▼ Детальна програма курсу</span>
+  </div>
+
+  <div class="card__meta">
+    <div class="card__meta-item">
+      <span class="card__meta-label">Вік</span>
+      <span class="card__meta-value">15+ років / Дорослі</span>
+    </div>
+
+    <div class="card__meta-item">
+      <span class="card__meta-label">Тривалість</span>
+      <span class="card__meta-value time">5-7 міс.</span>
+    </div>
+
+    <div class="card__meta-item">
+      <span class="card__meta-label">Вартість</span>
+      <span class="card__meta-value price">4500 грн/міс</span>
+    </div>
+  </div>
+</article>
       </div>
     </section>
   </div>
@@ -2398,7 +2413,7 @@ body {
         <div class="about-principle__top">
           <h2 class="about-principle__title">Принцип<br>роботи</h2>
         <div class="about-principle__photo">
-  <img src="images/principle.jpg" alt="Принцип роботи">
+  <img src="images/головна2.png" alt="Принцип роботи">
 </div>
         </div>
         <div class="about-principle__content">
@@ -2812,13 +2827,9 @@ body {
 Вона закриває головний страх батьків — що дитина просто "грається". Тут ми показуємо, що ШІ — це інструмент виробництва. Замість споживання контенту, дитина стає його професійним творцем.`
 };
 COURSES['it-base'] = {
-  tag: 'ОСВІТА · 6–8 років',
   name: 'IT BASE',
-  level: 'Академічна програма',
   age: 'Від 6 – 8 років',
   duration: '1 рік',
-  schedule: `Будні дні: 2 дня по 1 заняттю;
-Вихідні дні: 1 день по 2 заняття`,
   price: '1900 грн./міс.',
   content: `🚀 IT BASE: Перші кроки у світ технологій 
 
@@ -2837,13 +2848,9 @@ COURSES['it-base'] = {
 💡 Особливість курсу: Ми робимо великий акцент на Штучному Інтелекті, щоб діти вже зараз опановували інструменти, які стануть стандартом у майбутньому.`
 };
 COURSES['it-discovery'] = {
-  tag: 'ОСВІТА · 9–12 років',
   name: 'IT DISCOVERY',
-  level: 'Академічна програма',
   age: '9–12 років',
   duration: '2 роки',
-  schedule: `Будні дні: 2 дня по 1 заняттю;
-Вихідні дні: 1 день по 2 заняття`,
   price: '3700 грн/міс.',
   content: `Головний результат: Гаджет перетворюється з "поглинача часу" на інструмент для самореалізації. Дитина розуміє, ким вона хоче бути в IT: програмістом, дизайнером, інженером чи медіа-мейкером.
 
@@ -2893,13 +2900,9 @@ HTML5, CSS3, Python Junior та інтеграція ChatGPT API.
 AI-First: Штучний інтелект вбудований у кожен модуль.`
 };
 COURSES['it-explorer'] = {
-  tag: 'ОСВІТА · 13–14 років',
   name: 'IT EXPLORER',
-  level: 'Академічна програма',
   age: '13–14 років',
   duration: '2 роки',
-  schedule: `Будні дні: 2 дня по 1 заняттю;
-Вихідні дні: 1 день по 2 заняття`,
   price: '3700 грн/міс.',
   content: `Результат курсу: Програма побудована так, щоб кожен учень знайшов свій "майстер-напрямок". Після року навчання підліток не просто "знає IT", а має портфоліо з власних ігор, сайтів, 3D-моделей та бізнес-ідей.
 
@@ -2939,12 +2942,9 @@ Tech Teamwork: ефективна комунікація у командах.
 Інноваційні технології: дослідження сучасних трендів.`
 };
 COURSES['animation-studio'] = {
-  tag: 'СПЕЦКУРС · від 10 років',
   name: 'ANIMATION & CARTOON STUDIO',
-  level: 'Спецкурс',
   age: '10–14 років',
   duration: '8 місяців',
-  schedule: 'Будні дні: 2 дня по 1 заняттю; Вихідні дні: 1 день по 2 заняття',
   price: '3000 грн/міс.',
   content: `🎬 ANIMATION & CARTOON STUDIO: Від ідеї до прем’єри
 
@@ -2979,12 +2979,9 @@ COURSES['animation-studio'] = {
 Робота з кадром, відчуття ритму, монтаж, композиція та технічні навички роботи з мультимедіа.`
 };
 COURSES['lider-pro'] = {
-  tag: 'СПЕЦКУРС · 12–16 років',
   name: 'LIDER PRO: FINANCE & STARTUP',
-  level: 'Спецкурс',
   age: '12–16 років',
   duration: '1 рік',
-  schedule: 'Будні дні та вихідні: 1 день по 2 заняття',
   price: '3200 грн/міс.',
   content: `💼 LIDER PRO: FINANCE & STARTUP
 
@@ -3001,12 +2998,9 @@ COURSES['lider-pro'] = {
 Дитина обирає професію свідомо, розуміє механіку грошей і має готовий план запуску власної справи.`
 };
 COURSES['devcore'] = {
-  tag: 'СПЕЦКУРС · 13–16 років',
   name: 'DEVCORE: PYTHON & WEB',
-  level: 'Спецкурс',
   age: '13–16 років',
   duration: '7 місяців',
-  schedule: 'Будні дні та вихідні: 1 день по 2 заняття',
   price: '4200 грн/міс.',
   content: `🛠️ DEVCORE: PYTHON & WEB
 
@@ -3038,12 +3032,9 @@ COURSES['devcore'] = {
 - Досвід командної роботи над реальним IT-стартапом.`
 };
 COURSES['web-architect'] = {
-  tag: 'СПЕЦКУРС · 13–16 років',
   name: 'WEB-ARCHITECT: FRONT-END DESIGN & DEV',
-  level: 'Спецкурс (Креативна розробка)',
   age: '13–16 років',
   duration: '7 місяців',
-  schedule: '1 раз на тиждень (подвійне заняття)',
   price: '4200 грн/міс.',
   content: `🚀 WEB-ARCHITECT: FRONT-END DESIGN & DEV
 
@@ -3077,12 +3068,9 @@ COURSES['web-architect'] = {
 - Live Portfolio: усі проєкти опубліковані онлайн.`
 };
 COURSES['design-master'] = {
-  tag: 'СПЕЦКУРС · 13–16 років',
   name: 'DESIGN MASTER: 2D, 3D & DIGITAL ART',
-  level: 'Спецкурс (Професійна підготовка)',
   age: '13–16 років',
   duration: '9 місяців',
-  schedule: '1 раз на тиждень (подвійне заняття)',
   price: '4500 грн/міс.',
   content: `🚀 DESIGN MASTER: 2D, 3D & DIGITAL ART
 
@@ -3115,12 +3103,9 @@ COURSES['design-master'] = {
 - 3D Showreel`
 };
 COURSES['it-camp'] = {
-  tag: 'СПЕЦКУРС · 7–14 років',
   name: 'IT-ТАБОРИ SUMMER & WINTER',
-  level: 'Спецкурс',
   age: '7–14 років',
   duration: 'Терміни шкільних канікул',
-  schedule: 'Будні з 9.00 - 17.00',
   price: '700 грн/день',
   content: `IT-ТАБОРИ SUMMER & WINTER
 
@@ -3131,11 +3116,9 @@ COURSES['it-camp'] = {
 Головна фішка: Кожен день — це новий рівень реальної гри, де фінальний бос — крутий власний проєкт у портфоліо!`
 };
 COURSES['Pro-Design'] = {
-  tag: 'ДЛЯ ДОРОСЛИХ',
-  name: 'PROFESSIONAL DESIGN & VISUAL ARTS',
-  level: 'Професійний (з нуля до Pro)',
+ name: 'PROFESSIONAL DESIGN & VISUAL ARTS',
+  age: 'Для дорослих',
   duration: '12–14 місяців',
-  schedule: 'Офлайн, інтенсивні заняття з практикою на кожному уроці',
   price: '4500 грн/міс',
   content: `КУРС PROFESSIONAL DESIGN & VISUAL ARTS: ВІД 2D-ГРАФІКИ ДО 3D-СВІТІВ
 
@@ -3166,11 +3149,9 @@ DTP Specialist: верстка книг, журналів та преси.
 Актуальність: ми вчимо тільки тим інструментам, за які реально платять гроші на ринку праці.`
 };
 COURSES['Frontend-Pro'] = {
-  tag: 'ДЛЯ ДОРОСЛИХ',
   name: 'FRONTEND DEVELOPER',
-  level: 'Професійний курс',
+  age: 'Для дорослих',
   duration: '12 місяців',
-  schedule: '1 раз на тиждень (інтенсивне подвійне заняття)',
   price: '4300 грн/міс',
   content: `КУРС FRONTEND DEVELOPER: ВІД НУЛЯ ДО MIDDLE-РОЗРОБНИКА
 
@@ -3219,11 +3200,9 @@ AI-DevTools: використання нейромереж для оптиміз
 Це ваш впевнений вхід в IT-індустрію. Почніть кар'єру розробника вже сьогодні!`
 };
 COURSES['PowerBI-Pro'] = {
-  tag: 'ДЛЯ ДОРОСЛИХ',
-  name: 'DATA VISUALIZER (POWER BI)',
-  level: 'Спеціалізований курс',
+ name: 'DATA VISUALIZER (POWER BI)',
+  age: 'Для дорослих',
   duration: '2 місяці',
-  schedule: '1 раз на тиждень (інтенсивне подвійне заняття)',
   price: '4200 грн/міс',
   content: `КУРС DATA VISUALIZER: MICROSOFT POWER BI
 
@@ -3252,11 +3231,9 @@ COURSES['PowerBI-Pro'] = {
 Почніть приймати рішення на основі даних!`
 };
 COURSES['DataScience-Pro'] = {
-  tag: 'ДЛЯ ДОРОСЛИХ',
   name: 'DATA SCIENCE & AI ENGINEERING',
-  level: 'Професійний спецкурс',
+  age: 'Для дорослих',
   duration: '6–8 місяців',
-  schedule: '1 раз на тиждень (подвійне заняття)',
   price: '4300 грн/міс',
   content: `КУРС DATA SCIENCE & AI ENGINEERING
 
@@ -3285,6 +3262,83 @@ COURSES['DataScience-Pro'] = {
 - Інтерактивний дашборд
 
 Станьте спеціалістом нового покоління в Data Science!`
+};
+COURSES['3dsMax-Pro'] = {
+  name: 'AUTODESK 3DS MAX: ФОТОРЕАЛІСТИЧНА ВІЗУАЛІЗАЦІЯ',
+  age: '15+ років / Дорослі',
+  duration: '5–7 місяців',
+  price: '4500 грн/міс',
+
+  content: `КУРС AUTODESK 3DS MAX
+
+Мистецтво створення фотореалістичних сцен, які виглядають як справжні фотографії.
+
+✨ Від ідеї до рендеру
+Навчіться створювати візуалізації для архітектури, дизайну та реклами.
+
+🚀 Індустрії:
+- Архітектурна візуалізація
+- Дизайн інтер’єру
+- GameDev та кіно
+- Product Design
+
+🏗️ Програма:
+Ⅰ. Основи 3ds Max та інтерфейс
+Ⅱ. 3D-моделювання (об’єкти, меблі, архітектура)
+Ⅲ. Матеріали та текстури (UV Mapping)
+Ⅳ. Освітлення та рендер (V-Ray / Corona)
+Ⅴ. Постобробка (Photoshop)
+
+🛠️ Hard Skills:
+- Полігональне моделювання
+- Робота з матеріалами
+- Налаштування світла
+- Фотореалістичний рендер
+
+🏆 Результат:
+- Інтер’єрна сцена
+- Екстер’єр будівлі
+- Предметна візуалізація
+
+Створіть портфоліо та почніть кар’єру в 3D-візуалізації!`
+};
+COURSES['NextGen-CEO'] = {
+  name: 'NEXTGEN CEO: ШТУЧНИЙ ІНТЕЛЕКТ ДЛЯ ЛІДЕРІВ',
+  age: 'Для дорослих',
+  duration: '7 тижнів (14 занять)',
+  price: 'За запитом',
+
+  content: `КУРС NEXTGEN CEO: AI ДЛЯ ЛІДЕРІВ
+
+Перестаньте працювати вручну там, де може працювати алгоритм. ШІ — це ваш ключовий інструмент конкурентоспроможності.
+
+🚀 Технології:
+- ChatGPT, Gemini, Claude
+- DALL-E, Leonardo AI, Stable Diffusion
+- Gamma, Miro AI, Microsoft Copilot
+- Zapier, Make, AI-чатботи
+
+🏗️ Програма:
+Ⅰ. Стратегія та основи AI
+Ⅱ. Prompt Engineering (C.R.E.A.T.E, CoT, ToT)
+Ⅲ. AI-контент та відео
+Ⅳ. Аналітика та бізнес-ефективність
+Ⅴ. AI-агенти та автоматизація (No-code)
+Ⅵ. Ризики та безпека
+
+🛠️ Навички:
+- Автоматизація бізнес-процесів
+- AI-аналітика та дослідження ринку
+- Генерація контенту та презентацій
+- Побудова AI-систем без коду
+
+🏆 Результат:
+- Власні AI-агенти
+- Автоматизовані бізнес-процеси
+- AI-дашборди та звіти
+- Стратегія впровадження AI
+
+Інтегруйте штучний інтелект у свій бізнес і отримайте конкурентну перевагу вже зараз.`
 };
 const TEACHERS_DATA = {
   milena: {
