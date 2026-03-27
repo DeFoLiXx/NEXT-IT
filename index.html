@@ -2692,16 +2692,15 @@ body {
         <!-- RIGHT: 3 small cards -->
         <div class="contacts-right">
 
-          <!-- Mail -->
-          <a class="contact-card-sm card-mail" href="/cdn-cgi/l/email-protection#325b4653515356575f4b5c574a4672555f535b5e1c515d5f" id="ccard-mail">
-            <div class="contact-card-sm__icon">✉️</div>
-            <div class="contact-card-sm__body">
-              <div class="contact-card-sm__label">Почта</div>
-              <div class="contact-card-sm__value"><span class="__cf_email__" data-cfemail="b0d9c4d1d3d1d4d5ddc9ded5c8c4f0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></div>
-            </div>
-            <span class="contact-card-sm__arrow">→</span>
-          </a>
-
+          <!-- Mail (кликабельная, копирует email) -->
+<a class="contact-card-sm card-mail" href="#" id="ccard-mail">
+  <div class="contact-card-sm__icon">✉️</div>
+  <div class="contact-card-sm__body">
+    <div class="contact-card-sm__label">Почта</div>
+    <div class="contact-card-sm__value">itacademynext@gmail.com</div>
+  </div>
+  <span class="contact-card-sm__arrow">→</span>
+</a>
           <!-- Phone -->
           <a class="contact-card-sm card-phone"
              href="tel:+380778900012"
@@ -3544,6 +3543,18 @@ window.onclick = function(e) {
     closeTeacher();
   }
 };
+document.getElementById('ccard-mail').addEventListener('click', function(e) {
+    e.preventDefault(); // отменяем стандартное действие ссылки
+
+    const email = 'itacademynext@gmail.com';
+    navigator.clipboard.writeText(email) // копируем в буфер
+      .then(() => {
+          alert('Email скопирован: ' + email);
+      })
+      .catch(err => {
+          console.error('Не удалось скопировать email', err);
+      });
+});
   </script>
 
   <!-- ===== COURSE MODAL ===== -->
