@@ -546,6 +546,76 @@
 }
 
 /* ===== CATEGORY NAV ===== */
+/* ===== AUDIENCE BANNER ===== */
+
+.audience-strip {
+  background: var(--bg-dark);
+  padding: 26px 32px;
+  text-align: center;
+}
+
+.audience-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.audience-item {
+  display: inline-flex;
+  align-items: flex-start; /* точка прижата к первой строке текста */
+  gap: 12px;
+
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: .04em;
+
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.audience-item__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px; /* подгонка под baseline текста */
+}
+
+.audience-sep {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 1.2rem;
+}
+
+.mobile-break {
+  display: none; /* скрываем перенос на ПК */
+}
+
+@media (max-width: 720px) {
+  .audience-strip {
+    padding: 12px 16px;
+  }
+
+  .audience-item {
+    font-size: .82rem;
+    white-space: normal; /* текст может переноситься */
+    line-height: 1.2;
+  }
+
+  .audience-sep {
+    display: none; /* убираем точки-разделители на мобильных */
+  }
+
+  .mobile-break {
+    display: inline; /* включаем перенос только на мобильных */
+  }
+}
+
+/* ===== CATEGORY NAV ===== */
 
 .category-nav {
   padding: 40px 32px 24px;
@@ -553,9 +623,13 @@
   justify-content: center;
   gap: 18px;
   flex-wrap: wrap;
+  align-items: center; /* кнопки по центру вертикали */
 }
 
 .cat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 13px 28px;
   border-radius: var(--radius);
   white-space: nowrap;
@@ -570,6 +644,7 @@
   background: #fff;
   color: var(--text);
   box-shadow: var(--shadow);
+  line-height: 1;
 }
 
 .cat-btn.cat-1:hover {
@@ -594,6 +669,19 @@
   background: var(--n-red);
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(216, 29, 29, 0.22);
+}
+
+@media (max-width: 720px) {
+  .category-nav {
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cat-btn {
+    font-size: 0.82rem;
+    padding: 10px 20px;
+  }
 }
     /* ===== SERVICES SECTION ===== */
     .sub-cat-header {
@@ -1855,13 +1943,23 @@ body {
 
     <!-- CATEGORY BUTTONS -->
     <div class="audience-strip">
-      <div class="audience-strip__inner">
-        <span class="audience-item"><span class="audience-item__dot" style="background:var(--n-green)"></span>Для дітей – весело + корисно.</span>
-        <span class="audience-sep">·</span>
-        <span class="audience-item"><span class="audience-item__dot" style="background:var(--n-blue)"></span>Для підлітків – перші професійні навички.</span>
-        <span class="audience-sep">·</span>
-        <span class="audience-item"><span class="audience-item__dot" style="background:var(--n-red)"></span>Для дорослих – нова професія або підвищення кваліфікації.</span>
-      </div>
+  <div class="audience-strip__inner">
+    <span class="audience-item">
+      <span class="audience-item__dot" style="background:var(--n-green)"></span>
+      Для дітей – весело + корисно.
+    </span>
+    <span class="audience-sep">·</span>
+    <span class="audience-item">
+      <span class="audience-item__dot" style="background:var(--n-blue)"></span>
+      Для підлітків – перші професійні навички.
+    </span>
+    <span class="audience-sep">·</span>
+    <span class="audience-item">
+      <span class="audience-item__dot" style="background:var(--n-red)"></span>
+      Для дорослих – нова професія або 
+      <br class="mobile-break">підвищення кваліфікації.
+    </span>
+  </div>
     </div>
     <div class="category-nav">
       <button class="cat-btn cat-1" onclick="scrollToSection('category1')">ДЛЯ ДІТЕЙ ТА ПІДЛІТКІВ</button>
